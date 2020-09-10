@@ -77,4 +77,4 @@ ggplot(BIlist1, aes(x=StaceIV_nativity, fill=StaceIV_nativity)) +
                ))
 
 ```
-
+https://github.com/mariehenniges/BIFloraExplorer/raw/master/man/figures/README-unnamed-chunk-2-1.PNG
