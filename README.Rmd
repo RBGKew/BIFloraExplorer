@@ -38,25 +38,44 @@ devtools::install_github("mariehenniges/BIFloraExplorer")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The data allows a new insights into current species trends.
 
 ```{r example}
 library(BIFloraExplorer)
-## basic example code
+
+summary(BIlist$StaceIV_nativity)
+
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+This allows a closer look at how the flora is developing.
 
-```{r cars}
-summary(cars)
+```{r , echo = FALSE}
+require(dplyr)
+BIlist1 = filter(BIlist, StaceIV_nativity != "")
+
+BIlist1$StaceIV_nativity <- factor(BIlist1$StaceIV_nativity, levels = c("N", "?N", "Arch-denizen", "Arch-colonist", "Arch-cultd", "Neo-natd", "Neo-casual", "Neo-surv", "Neonative"))
+
+
+#plot
+
+require(ggplot2)
+Nativity_bar_chart = ggplot(BIlist1, aes(x=StaceIV_nativity, fill=StaceIV_nativity)) + 
+  geom_bar() + theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Native status", y = "Count") +
+  scale_fill_manual(
+    values = c("#0072B2",
+               "lightskyblue",
+               "yellow3",
+               "#F0E442", 
+               "khaki1", 
+               "#D55E00", 
+               "sienna1", 
+               "sandybrown", 
+               "black"
+               ))
+
+Nativity_bar_chart
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
