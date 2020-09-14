@@ -82,4 +82,5 @@ ggplot(BIlist1, aes(x=StaceIV_nativity, fill=StaceIV_nativity)) +
 ```
 
 
-# Native status <img src="man/figures/README-unnamed-chunk-2-1.png" align="left" width="100"/>
+![Native status](images/native_status.png)
+

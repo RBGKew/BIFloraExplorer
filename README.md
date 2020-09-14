@@ -57,4 +57,4 @@ This allows a closer look at how the flora is developing.
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
-# Native status <img src="man/figures/README-unnamed-chunk-2-1.png" align="left" width="100"/>
+![Native status](images/native_status.png)
