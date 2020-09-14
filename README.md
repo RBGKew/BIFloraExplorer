@@ -55,5 +55,6 @@ This allows a closer look at how the flora is developing.
     #>     intersect, setdiff, setequal, union
     #> Loading required package: ggplot2
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
-<https://github.com/mariehenniges/BIFloraExplorer/raw/master/man/figures/README-unnamed-chunk-2-1.PNG>
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" /> \!
+\[alt text\]
+(<https://github.com/mariehenniges/BIFloraExplorer/raw/master/man/figures/README-unnamed-chunk-2-1.PNG>)
