@@ -56,5 +56,6 @@ This allows a closer look at how the flora is developing.
     #> Loading required package: ggplot2
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+\#\#\#Visualisation
 
 ![Native status](images/native_status.png)
