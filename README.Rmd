@@ -50,37 +50,5 @@ summary(BIlist$StaceIV_nativity)
 
 This allows a closer look at how the flora is developing.
 
-```{r , echo = FALSE}
-require(dplyr)
-BIlist1 = filter(BIlist, StaceIV_nativity != "")
-
-BIlist1$StaceIV_nativity <- factor(BIlist1$StaceIV_nativity, levels = c("N", "?N", "Arch-denizen", "Arch-colonist", "Arch-cultd", "Neo-natd", "Neo-casual", "Neo-surv", "Neonative"))
-
-
-#plot
-
-require(ggplot2)
-ggplot(BIlist1, aes(x=StaceIV_nativity, fill=StaceIV_nativity)) + 
-  geom_bar() + theme_classic() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Native status", y = "Count") +
-  scale_fill_manual(
-    values = c("#0072B2",
-               "lightskyblue",
-               "yellow3",
-               "#F0E442", 
-               "khaki1", 
-               "#D55E00", 
-               "sienna1", 
-               "sandybrown", 
-               "black"
-               ))
-
-
-
-
-```
-###Visualisation
-
 ![Native status](images/native_status.png)
 
