@@ -19,3 +19,5 @@ Suggests:
 URL: https://github.com/mariehenniges/BIFloraExplorer
 Depends: 
     R (>= 2.10)
+Imports:
+    dplyr
