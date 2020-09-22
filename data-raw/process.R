@@ -69,6 +69,9 @@ GS_CValueDB = dplyr::rename(GS_CValueDB, authors = authors_Stace, GS_2C_pg = pg_
 GS_CValueDB$ID = "4"
 
 
+#Genome size full
+
+GS_BI = dplyr::bind_rows(GS_Kew, )
 
 
 
