@@ -155,7 +155,9 @@ GS_BI = dplyr::select(GS_BI, taxon_name, taxon_name_Stace, authors, GS_2C_pg, GS
 
 
 #Add final datafiles to project
-usethis::use_data(BIlist, overwrite = TRUE)
+usethis::use_data(main, overwrite = TRUE)
+
+usethis::use_data(checklist, overwrite = TRUE)
 
 usethis::use_data(chrom_num, overwrite = TRUE)
 
@@ -168,3 +170,5 @@ usethis::use_data(GS_Zonneveld_2019, overwrite = TRUE)
 usethis::use_data(GS_CValueDB, overwrite = TRUE)
 
 usethis::use_data(GS_BI, overwrite = TRUE)
+
+
