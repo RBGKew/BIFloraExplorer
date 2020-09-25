@@ -90,7 +90,7 @@ main$StaceIV_nativity = as.factor(BIlist$StaceIV_nativity)
 
 chrom_num = read.csv("data-raw/Chrom_raw.csv")
 
-chrom_num = dplyr::select(chrom_num, LIST, TAXONCITED, chromosome_count, notes, unambiguous_match, matched_by_cit., match_to_subsp_etc.)
+chrom_num = dplyr::select(chrom_num, kew_id, LIST, TAXONCITED, chromosome_count_2n, notes, unambiguous_match, matched_by_cit., match_to_subsp_etc.)
 
 chrom_num = dplyr::rename(chrom_num, taxon_name = LIST, cited_name = TAXONCITED ) 
 
@@ -100,7 +100,7 @@ chrom_num = dplyr::rename(chrom_num, taxon_name = LIST, cited_name = TAXONCITED 
 
 GS_Kew = read.csv("data-raw/GS_Kew.csv")
 
-GS_Kew = dplyr::select(GS_Kew, taxon_name, taxon_name_Stace, authors_Stace, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
+GS_Kew = dplyr::select(GS_Kew, kew_id, taxon_name, taxon_name_Stace, authors_Stace, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
 
 GS_Kew = dplyr::rename(GS_Kew, authors = authors_Stace, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
 
@@ -116,7 +116,7 @@ GS_Kew$ID = "1"
 
 GS_Smarda_2019 = read.csv("data-raw/GS_Smarda_2019.csv")
 
-GS_Smarda_2019 = dplyr::select(GS_Smarda_2019, taxon_name_auth, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Data.source)
+GS_Smarda_2019 = dplyr::select(GS_Smarda_2019, kew_id, taxon_name_auth, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Data.source)
 
 GS_Smarda_2019 = dplyr::rename(GS_Smarda_2019, taxon_name = taxon_name_auth, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
 
@@ -128,7 +128,7 @@ GS_Smarda_2019$ID = "2"
 
 GS_Zonneveld_2019 = read.csv("data-raw/GS_Zonneveld_2019.csv")
 
-GS_Zonneveld_2019 = dplyr::select(GS_Zonneveld_2019, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, DB)
+GS_Zonneveld_2019 = dplyr::select(GS_Zonneveld_2019, kew_id, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, DB)
 
 GS_Zonneveld_2019 = dplyr::rename(GS_Zonneveld_2019, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data.source = DB) 
 
@@ -140,7 +140,7 @@ GS_Zonneveld_2019$ID = "3"
 
 GS_CValueDB = read.csv("data-raw/GS_CValueDB.csv")
 
-GS_CValueDB = dplyr::select(GS_CValueDB, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Reference, DB)
+GS_CValueDB = dplyr::select(GS_CValueDB, kew_id, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Reference, DB)
 
 GS_CValueDB = dplyr::rename(GS_CValueDB, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data.source = DB) 
 
@@ -151,7 +151,14 @@ GS_CValueDB$ID = "4"
 
 GS_BI = dplyr::bind_rows(GS_Kew, GS_Smarda_2019, GS_Zonneveld_2019, GS_CValueDB)
 
-GS_BI = dplyr::select(GS_BI, taxon_name, taxon_name_Stace, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from.GB.material, Data.source, ID)
+GS_BI = dplyr::select(GS_BI, kew_id, taxon_name, taxon_name_Stace, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from.GB.material, Data.source, ID)
+
+
+#Genome size minimal list (smallest measurement)
+GS_small = GS_BI
+GS_small = dplyr::group_by(GS_small, taxon_name)
+GS_small = dplyr::slice(GS_small, which.min(GS_2C_pg))
+
 
 
 #Add final datafiles to project
@@ -170,5 +177,7 @@ usethis::use_data(GS_Zonneveld_2019, overwrite = TRUE)
 usethis::use_data(GS_CValueDB, overwrite = TRUE)
 
 usethis::use_data(GS_BI, overwrite = TRUE)
+
+usethis::use_data(GS_small, overwrite = TRUE)
 
 
