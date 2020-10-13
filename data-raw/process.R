@@ -64,10 +64,18 @@ main = dplyr::select(main,
                      broad_continental_origin,
                      life_form,
                      biome,
-                     GB_Man_hectad_level_records_post_2000,
-                     Ireland_hectad_level_records_post_2000,
-                     Channel_Islands_hectad_level_records_post_2000,
-                     IUCN_authority,
+                     GB_Man_hectads_post2000,
+                     Ire_hectads_post2000,
+                     CI_hectads_post2000,
+                     GB_Man_hectads_1987_1999,
+                     Ire_hectads_1987_1999,
+                     CI_hectads_1987_1999,
+                     GB_Man_hectads_2000_2009,
+                     Ire_hectads_2000_2009,
+                     CI_hectads_2000_2009,
+                     GB_Man_hectads_2010_2019,
+                     Ire_hectads_2010_2019,
+                     CI_hectads_2010_2019,
                      IUCN_assessmentId,
                      IUCN_interlTaxonId,
                      IUCN_redlistCategory,
@@ -80,10 +88,11 @@ main = dplyr::select(main,
                      
                      
 
-main$StaceIV_nativity = as.factor(BIlist$StaceIV_nativity)
-
-
-
+main$StaceIV_nativity = as.factor(main$StaceIV_nativity)
+main$Atlas_nativity.viaALIENATT_PLANTATT. = as.factor(main$Atlas_nativity.viaALIENATT_PLANTATT.)
+main$Stace_Crawley_nativity.aliens. = as.factor(main$Stace_Crawley_nativity.aliens.)
+main$life_form = as.factor(main$life_form)
+main$biome = as.factor(main$biome)
 
 
 #Chromosome counts
