@@ -6,7 +6,7 @@ main = read.csv("data-raw/BI_MAIN.csv")
 
 checklist = dplyr::select(main, 
                           kew_id, 
-                          taxon_name, 
+                          taxon_name,
                           taxon_name_Stace, 
                           authors_Stace, 
                           order, 
@@ -21,10 +21,10 @@ checklist = dplyr::select(main,
                           aggregate, 
                           members_of_agg., 
                           taxonomic_status, 
-                          WCVP.URL, 
-                          POWO.URL, 
-                          IPNI.URL, 
-                          accepted.WCVP.URL)
+                          WCVP_URL, 
+                          POWO_URL, 
+                          IPNI_URL, 
+                          accepted_WCVP_URL)
 
 checklist$taxonomic_status = as.factor(checklist$taxonomic_status)
 
@@ -32,7 +32,7 @@ checklist$taxonomic_status = as.factor(checklist$taxonomic_status)
 main = dplyr::select(main, 
                      kew_id, 
                      unclear_species_marker, 
-                     taxon_name, 
+                     taxon_name,
                      taxon_name_Stace, 
                      authors_Stace, 
                      taxon_name_WCVP, 
@@ -52,14 +52,14 @@ main = dplyr::select(main,
                      accepted_kew_id,
                      accepted_name,
                      accepted_authors,
-                     imperfect.match.with.Stace.IV,
-                     WCVP.URL,
-                     POWO.URL,
-                     IPNI.URL,
-                     accepted.WCVP.URL,
+                     imperfect_match_with_Stace_IV,
+                     WCVP_URL,
+                     POWO_URL,
+                     IPNI_URL,
+                     accepted_WCVP_URL,
                      StaceIV_nativity,
-                     Atlas_nativity.viaALIENATT_PLANTATT.,
-                     Stace_Crawley_nativity.aliens.,
+                     Atlas_nativity_viaALIENATT_PLANTATT,
+                     Stace_Crawley_nativity_aliens,
                      origin,
                      broad_continental_origin,
                      life_form,
@@ -89,8 +89,8 @@ main = dplyr::select(main,
                      
 
 main$StaceIV_nativity = as.factor(main$StaceIV_nativity)
-main$Atlas_nativity.viaALIENATT_PLANTATT. = as.factor(main$Atlas_nativity.viaALIENATT_PLANTATT.)
-main$Stace_Crawley_nativity.aliens. = as.factor(main$Stace_Crawley_nativity.aliens.)
+main$Atlas_nativity_viaALIENATT_PLANTATT = as.factor(main$Atlas_nativity_viaALIENATT_PLANTATT)
+main$Stace_Crawley_nativity_aliens = as.factor(main$Stace_Crawley_nativity_aliens)
 main$life_form = as.factor(main$life_form)
 main$biome = as.factor(main$biome)
 
@@ -111,13 +111,22 @@ GS_Kew = read.csv("data-raw/GS_Kew.csv")
 
 GS_Kew = dplyr::select(GS_Kew, kew_id, taxon_name, taxon_name_Stace, authors_Stace, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
 
-GS_Kew = dplyr::rename(GS_Kew, authors = authors_Stace, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
+GS_Kew = dplyr::rename(GS_Kew, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
 
-GS_Kew$from.GB.material = "y"
+GS_Kew$from_GB_material = "y"
 
-GS_Kew$Data.source = "Kew"
+GS_Kew$Data_source = "Kew"
 
 GS_Kew$ID = "1"
+
+
+#presentation of new measurements from Kew
+
+GS_Kew_measurements = read.csv("data-raw/GS_Kew.csv")
+
+GS_Kew_measurements = dplyr::select(GS_Kew_measurements, kew_id, taxon_name, taxon_name_Stace, authors_Stace, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
+
+GS_Kew_measurements = dplyr::rename(GS_Kew_measurements, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
 
 
 #Genome size
@@ -127,7 +136,7 @@ GS_Smarda_2019 = read.csv("data-raw/GS_Smarda_2019.csv")
 
 GS_Smarda_2019 = dplyr::select(GS_Smarda_2019, kew_id, taxon_name_auth, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Data.source)
 
-GS_Smarda_2019 = dplyr::rename(GS_Smarda_2019, taxon_name = taxon_name_auth, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
+GS_Smarda_2019 = dplyr::rename(GS_Smarda_2019, taxon_name = taxon_name_auth, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, from_GB_material = from.GB.material, Data_source = Data.source) 
 
 GS_Smarda_2019$ID = "2"
 
@@ -139,7 +148,7 @@ GS_Zonneveld_2019 = read.csv("data-raw/GS_Zonneveld_2019.csv")
 
 GS_Zonneveld_2019 = dplyr::select(GS_Zonneveld_2019, kew_id, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, DB)
 
-GS_Zonneveld_2019 = dplyr::rename(GS_Zonneveld_2019, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data.source = DB) 
+GS_Zonneveld_2019 = dplyr::rename(GS_Zonneveld_2019, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, from_GB_material = from.GB.material, Data_source = DB) 
 
 GS_Zonneveld_2019$ID = "3"
 
@@ -151,7 +160,7 @@ GS_CValueDB = read.csv("data-raw/GS_CValueDB.csv")
 
 GS_CValueDB = dplyr::select(GS_CValueDB, kew_id, taxon_name, taxon_name_Stace, authors_Stace, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Reference, DB)
 
-GS_CValueDB = dplyr::rename(GS_CValueDB, authors = authors_Stace, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data.source = DB) 
+GS_CValueDB = dplyr::rename(GS_CValueDB, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data_source = DB, from_GB_material = from.GB.material) 
 
 GS_CValueDB$ID = "4"
 
@@ -160,7 +169,7 @@ GS_CValueDB$ID = "4"
 
 GS_BI = dplyr::bind_rows(GS_Kew, GS_Smarda_2019, GS_Zonneveld_2019, GS_CValueDB)
 
-GS_BI = dplyr::select(GS_BI, kew_id, taxon_name, taxon_name_Stace, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from.GB.material, Data.source, ID)
+GS_BI = dplyr::select(GS_BI, kew_id, taxon_name, taxon_name_Stace, authors_Stace, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from_GB_material, Data_source, ID)
 
 
 #Genome size minimal list (smallest measurement)
