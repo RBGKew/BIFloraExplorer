@@ -1,4 +1,4 @@
-kew_id,taxon_name,taxon_name_Stace,authors_Stace,Full name,Genus,Species ,previous_list_author,Institute,ID.Number,previous_list_ID,Standard,Buffer,ave.sample,ave.standard,GS_2C,GS_1C,Mbp_2C,Mbp_1C,cv.sample,cv.standard,SD(R).sample,measured_by,matched_by_synonym
+kew_id,taxon_name,taxon_name_binom,authors,Full name,Genus,Species ,previous_list_author,Institute,ID.Number,previous_list_ID,Standard,Buffer,ave.sample,ave.standard,GS_2C,GS_1C,Mbp_2C,Mbp_1C,cv.sample,cv.standard,SD(R).sample,measured_by,matched_by_synonym
 30088655-2,Juniperus communis L.,Juniperus communis,L.,Juniperus communis,Juniperus,communis,,MSB,896913,,Allium,GPB3%PVPBmet,222.9766667,338.6733333,22.97,11.49,22465.61,11232.81,2.413333333,3.523333333,0.008717798,Robyn Powell,
 30122169-2,Sambucus nigra L.,Sambucus nigra,L.,Sambucus nigra,Sambucus,nigra,,MSB,894171,,Allium,GPB3%PVPBmet,179.77,232.8933333,26.93,13.47,26339.04,13169.52,4.473333333,2.25,0.037740341,Arezoo Dastpak,
 30122169-2,Sambucus nigra L.,Sambucus nigra,L.,Sambucus nigra,Sambucus,nigra,,MSB,950415,,Allium,GPB3%PVPBmet,202.6766667,261.79,27.01,13.51,26417.43,13208.71,2.81,1.93,0.003605551,Robyn Powell,
