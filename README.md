@@ -8,7 +8,7 @@
 [![Travis build
 status](https://travis-ci.com/mariehenniges/BIFloraExplorer.svg?branch=master)](https://travis-ci.com/mariehenniges/BIFloraExplorer)
 
-![Native status](images/sticker.png) <!-- badges: end -->
+![sticker](images/sticker.png) <!-- badges: end -->
 
 The goal of BIFloraExplorer is to present an up to date trait repository
 and species list for all vascular plants currently extant in the Britain
