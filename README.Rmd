@@ -4,22 +4,17 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
 # BIFloraExplorer
 
 <!-- badges: start -->
 [![Travis build status](https://travis-ci.com/mariehenniges/BIFloraExplorer.svg?branch=master)](https://travis-ci.com/mariehenniges/BIFloraExplorer)
+
+![Native status](images/sticker.png)
 <!-- badges: end -->
 
-The goal of BIFloraExplorer is to present an up to date species list for all vascular plants currently extant on the British Isles.
+The goal of BIFloraExplorer is to present an up to date trait repository and species list for all vascular plants currently extant in the Britain and Ireland.
+
+
 
 
 ## Installation
@@ -43,7 +38,7 @@ The data allows a new insights into current species trends.
 ```{r example}
 library(BIFloraExplorer)
 
-summary(BIlist$StaceIV_nativity)
+summary(main$StaceIV_nativity)
 
 
 ```

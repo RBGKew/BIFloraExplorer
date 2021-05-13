@@ -7,10 +7,12 @@
 
 [![Travis build
 status](https://travis-ci.com/mariehenniges/BIFloraExplorer.svg?branch=master)](https://travis-ci.com/mariehenniges/BIFloraExplorer)
-<!-- badges: end -->
 
-The goal of BIFloraExplorer is to present an up to date species list for
-all vascular plants currently extant on the British Isles.
+![Native status](images/sticker.png) <!-- badges: end -->
+
+The goal of BIFloraExplorer is to present an up to date trait repository
+and species list for all vascular plants currently extant in the Britain
+and Ireland.
 
 ## Installation
 
@@ -35,12 +37,13 @@ The data allows a new insights into current species trends.
 ``` r
 library(BIFloraExplorer)
 
-summary(BIlist$StaceIV_nativity)
-#>                          ?N Arch-colonist    Arch-cultd  Arch-denizen 
-#>            51            63            63            40            79 
-#>             N    Neo-casual      Neo-natd      Neo-surv     Neonative 
-#>          1407           260           937           310             4
+summary(main$StaceIV_nativity)
 ```
+
+    ##                          ?N Arch-colonist    Arch-cultd  Arch-denizen 
+    ##            50            61            61            40            79 
+    ##             N    Neo-casual      Neo-natd      Neo-surv     Neonative 
+    ##          1406           260           936           310             4
 
 This allows a closer look at how the flora is developing.
 
