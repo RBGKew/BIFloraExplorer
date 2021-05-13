@@ -1,13 +1,24 @@
 Package: BIFloraExplorer
-Title: The Vascular Flora of the British Isles
+Title: A taxonomic, genetic and ecological data resource for the vascular plants of Britain and Ireland
 Version: 0.1.0
-Authors@R: 
-    person(given = "Marie",
-           family = "Henniges",
-           role = c("aut", "cre"),
-           email = "marie.c.henniges@gmail.com",
-           comment = c(ORCID = "https://orcid.org/0000-0003-3626-2830 "))
-Description: A comprehensive list of vascular plant species currently extant on the British Isles with associated data.
+Authors@R: c(
+    person("M.C.", "Henniges", role = c("aut", "cre"), email = "marie.c.henniges@gmail.com", comment = c(ORCID = "https://orcid.org/0000-0003-3626-2830")),
+    person("R.F.", "Powell", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0001-7361-3164")),
+    person("S.", "Mian", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0001-7828-0629")),
+    person("C.A.", "Stace", role = "aut"),
+    person("K.J.", "Walker", role = "aut"),
+    person("R.J.", "Gornall", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0002-3814-8751")),
+    person("M.J.M.", "Christenhusz", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0003-1398-8743")),
+    person("M.R.", "Brown", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0003-2561-516X")),
+    person("A.D.", "Twyford", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0002-8746-6617")),
+    person("P.M.", "Hollingsworth", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0003-0602-0654")),
+    person("L.", "Jones", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0002-8197-1970")),
+    person("N.", "De Vere", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0001-9593-6925")),
+    person("A.", "Antonelli", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0003-1842-9297")),
+    person("A.R.", "Leitch", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0001-8574-302X")),
+    person("I.J.", "Leitch", role = "aut", comment = c(ORCID = "https://orcid.org/0000-0002-3837-8186"))
+           )
+Description: A comprehensive attribute database of all vascular plant species currently extant in Britain and Ireland.
 Maintainer: Marie Henniges <marie.c.henniges@gmail.com>
 License: MIT + file LICENSE
 Encoding: UTF-8

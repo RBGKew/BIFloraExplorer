@@ -6,9 +6,13 @@ main = read.csv("data-raw/BI_MAIN.csv")
 
 checklist = dplyr::select(main, 
                           kew_id, 
+                          unclear_species_marker,
+                          extinct_species_marker,
                           taxon_name,
                           taxon_name_binom, 
                           authors, 
+                          taxon_name_WCVP,
+                          authors_WCVP,
                           order, 
                           family, 
                           genus, 
@@ -21,6 +25,10 @@ checklist = dplyr::select(main,
                           aggregate, 
                           members_of_agg., 
                           taxonomic_status, 
+                          accepted_kew_id,
+                          accepted_name,
+                          accepted_authors,
+                          imperfect_match_with_Stace_IV,
                           WCVP_URL, 
                           POWO_URL, 
                           IPNI_URL, 
@@ -32,31 +40,32 @@ checklist$taxonomic_status = as.factor(checklist$taxonomic_status)
 
 main = dplyr::select(main, 
                      kew_id, 
-                     unclear_species_marker, 
+                     unclear_species_marker,
+                     extinct_species_marker,
                      taxon_name,
                      taxon_name_binom, 
                      authors, 
-                     taxon_name_WCVP, 
+                     taxon_name_WCVP,
                      authors_WCVP,
-                     order,
-                     family,
-                     genus,
-                     subgenus,
-                     section,
-                     subsection,
-                     series,
-                     species,
-                     group,
-                     aggregate,
-                     members_of_agg.,
-                     taxonomic_status,
+                     order, 
+                     family, 
+                     genus, 
+                     subgenus, 
+                     section, 
+                     subsection, 
+                     series, 
+                     species, 
+                     group, 
+                     aggregate, 
+                     members_of_agg., 
+                     taxonomic_status, 
                      accepted_kew_id,
                      accepted_name,
                      accepted_authors,
                      imperfect_match_with_Stace_IV,
-                     WCVP_URL,
-                     POWO_URL,
-                     IPNI_URL,
+                     WCVP_URL, 
+                     POWO_URL, 
+                     IPNI_URL, 
                      accepted_WCVP_URL,
                      StaceIV_nativity,
                      Atlas_nativity_viaALIENATT_PLANTATT,
@@ -82,8 +91,7 @@ main = dplyr::select(main,
                      predicted_CSR,
                      growth_form,
                      succulence,
-                     ecoflora_life_form,
-                     Christenhusz_life_form,
+                     life_form,
                      biome,
                      origin,
                      TDWG_level_1_code,
@@ -99,45 +107,29 @@ main = dplyr::select(main,
                      GB_Man_hectads_2010_2019,
                      Ire_hectads_2010_2019,
                      CI_hectads_2010_2019,
-                     IUCN_assessmentId,
-                     IUCN_interlTaxonId,
-                     IUCN_redlistCategory,
-                     IUCN_redlistCriteria,
-                     IUCN_criteriaVersion,
-                     IUCN_populationTrend,
-                     IUCN_scopes)
+                     hybrid_propensity,
+                     scaled_hybrid_propensity,
+                     BOLD_link1,
+                     BOLD_link2,
+                     BOLD_link3)
                      
                      
                      
                      
-
+main$taxonomic_status = as.factor(main$taxonomic_status)
 main$StaceIV_nativity = as.factor(main$StaceIV_nativity)
 main$Atlas_nativity_viaALIENATT_PLANTATT = as.factor(main$Atlas_nativity_viaALIENATT_PLANTATT)
 main$Stace_Crawley_nativity_aliens = as.factor(main$Stace_Crawley_nativity_aliens)
-main$ecoflora_life_form = as.factor(main$ecoflora_life_form)
-main$Christenhusz_life_form = as.factor(main$Christenhusz_life_form)
+main$life_form = as.factor(main$life_form)
 main$biome = as.factor(main$biome)
 main$growth_form = as.factor(main$growth_form)
 
-#Chromosome counts
+#Chromosome numbers
+chrom_num = read.csv("data-raw/chrom_num_BI.csv")
+chrom_num = dplyr::select(chrom_num, kew_id, taxon_name, cited_name, sporophytic_chromosome_number, notes, unambiguous_match, number_identical_observations)
 
-chrom_num = read.csv("data-raw/Chrom_raw.csv")
-
-chrom_num = dplyr::select(chrom_num, kew_id, LIST, TAXONCITED, chromosome_count_2n, notes, unambiguous_match, matched_by_cit., match_to_subsp_etc.)
-
-chrom_num = dplyr::rename(chrom_num, taxon_name = LIST, cited_name = TAXONCITED ) 
-
-
-
-#Chromosome number minimal list
-chrom_num_small = chrom_num
-chrom_num_small = dplyr::group_by(chrom_num_small, taxon_name)
-chrom_num_small = dplyr::slice(chrom_num_small, which.min(chromosome_count_2n))
-  
-#GS_small = GS_BI
-#GS_small = dplyr::group_by(GS_small, taxon_name)
-#GS_small = dplyr::slice(GS_small, which.min(GS_2C_pg))
-
+#Chromosome numbers and variation for main list
+chrom_var = read.csv("data-raw/chrom_var.csv")
 
 
 
@@ -145,36 +137,19 @@ chrom_num_small = dplyr::slice(chrom_num_small, which.min(chromosome_count_2n))
 #Kew
 
 GS_Kew = read.csv("data-raw/GS_Kew.csv")
-
-GS_Kew = dplyr::select(GS_Kew, kew_id, taxon_name, taxon_name_binom, authors, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
-
-GS_Kew = dplyr::rename(GS_Kew, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
-
-GS_Kew$from_GB_material = "y"
-
-GS_Kew$Data_source = "Kew"
-
+GS_Kew = dplyr::select(GS_Kew, kew_id, taxon_name, taxon_name_binom, authors, MSB_number, standard_species, standard_2C_pg, buffer, buffer_composition, buffer_origin, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, cv_sample, cv_standard, matched_by_synonym, cited_name)
+GS_Kew_BI = GS_Kew
+GS_Kew = dplyr::select(GS_Kew, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp)
+GS_Kew$from_BI_material = "y"
+GS_Kew$data_source = "Kew"
 GS_Kew$ID = "1"
-
-
-#presentation of new measurements from Kew
-
-GS_Kew_measurements = read.csv("data-raw/GS_Kew.csv")
-
-GS_Kew_measurements = dplyr::select(GS_Kew_measurements, kew_id, taxon_name, taxon_name_binom, authors, Institute, ID.Number, Standard, Buffer, GS_2C, GS_1C, Mbp_2C, Mbp_1C, matched_by_synonym)
-
-GS_Kew_measurements = dplyr::rename(GS_Kew_measurements, GS_2C_pg = GS_2C, GS_1C_pg = GS_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C) 
 
 
 #Genome size
 #Smarda 2019
 
 GS_Smarda_2019 = read.csv("data-raw/GS_Smarda_2019.csv")
-
-GS_Smarda_2019 = dplyr::select(GS_Smarda_2019, kew_id, taxon_name_auth, taxon_name_binom, authors, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Data.source)
-
-GS_Smarda_2019 = dplyr::rename(GS_Smarda_2019, taxon_name = taxon_name_auth, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, from_GB_material = from.GB.material, Data_source = Data.source) 
-
+GS_Smarda_2019 = dplyr::select(GS_Smarda_2019, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from_BI_material, data_source)
 GS_Smarda_2019$ID = "2"
 
 
@@ -182,11 +157,7 @@ GS_Smarda_2019$ID = "2"
 #Zonneveld 2019
 
 GS_Zonneveld_2019 = read.csv("data-raw/GS_Zonneveld_2019.csv")
-
-GS_Zonneveld_2019 = dplyr::select(GS_Zonneveld_2019, kew_id, taxon_name, taxon_name_binom, authors, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, DB)
-
-GS_Zonneveld_2019 = dplyr::rename(GS_Zonneveld_2019, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, from_GB_material = from.GB.material, Data_source = DB) 
-
+GS_Zonneveld_2019 = dplyr::select(GS_Zonneveld_2019, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from_BI_material, data_source)
 GS_Zonneveld_2019$ID = "3"
 
 
@@ -194,26 +165,30 @@ GS_Zonneveld_2019$ID = "3"
 #CvalueDB
 
 GS_CValueDB = read.csv("data-raw/GS_CValueDB.csv")
-
-GS_CValueDB = dplyr::select(GS_CValueDB, kew_id, taxon_name, taxon_name_binom, authors, pg_2C, pg_1C, Mbp_2C, Mbp_1C, from.GB.material, Reference, DB)
-
-GS_CValueDB = dplyr::rename(GS_CValueDB, GS_2C_pg = pg_2C, GS_1C_pg = pg_1C, GS_2C_Mbp = Mbp_2C, GS_1C_Mbp = Mbp_1C, Data_source = DB, from_GB_material = from.GB.material) 
-
+GS_CValueDB = dplyr::select(GS_CValueDB, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, Reference, from_BI_material, data_source)
 GS_CValueDB$ID = "4"
+
 
 
 #Genome size full (all genome size measurements)
 
 GS_BI = dplyr::bind_rows(GS_Kew, GS_Smarda_2019, GS_Zonneveld_2019, GS_CValueDB)
-
-GS_BI = dplyr::select(GS_BI, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from_GB_material, Data_source, ID)
+GS_BI = dplyr::select(GS_BI, kew_id, taxon_name, taxon_name_binom, authors, GS_2C_pg, GS_1C_pg, GS_2C_Mbp, GS_1C_Mbp, from_BI_material, data_source, ID)
 
 
 #Genome size minimal list (smallest measurement)
 GS_small = GS_BI
-GS_small = dplyr::group_by(GS_small, taxon_name)
+GS_small = dplyr::group_by(GS_small, kew_id)
 GS_small = dplyr::slice(GS_small, which.min(GS_2C_pg))
 
+
+#add both genome size and chromosome counts into the main table (min lists, smallest measurement per species)
+#create GS_small_match and chrom_num_small_match to add into main table
+GS_small_match = dplyr::select(GS_small, kew_id, GS_1C_pg, GS_2C_pg, GS_1C_Mbp, GS_2C_Mbp,from_BI_material, data_source)
+chrom_var_match = dplyr::select(chrom_var, kew_id, sporophytic_chromosome_number, infraspecific_variation_chrom_number)
+
+main = dplyr::left_join(main, GS_small_match, by = "kew_id")
+main = dplyr::left_join(main, chrom_var_match, by = "kew_id")
 
 
 
@@ -224,18 +199,8 @@ usethis::use_data(checklist, overwrite = TRUE)
 
 usethis::use_data(chrom_num, overwrite = TRUE)
 
-usethis::use_data(chrom_num_small, overwrite = TRUE)
-
-usethis::use_data(GS_Kew, overwrite = TRUE)
-
-usethis::use_data(GS_Smarda_2019, overwrite = TRUE)
-
-usethis::use_data(GS_Zonneveld_2019, overwrite = TRUE)
-
-usethis::use_data(GS_CValueDB, overwrite = TRUE)
+usethis::use_data(GS_Kew_BI, overwrite = TRUE)
 
 usethis::use_data(GS_BI, overwrite = TRUE)
-
-usethis::use_data(GS_small, overwrite = TRUE)
 
 
