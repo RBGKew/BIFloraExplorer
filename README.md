@@ -20,9 +20,10 @@ Ireland.
 ## Information about the dataset
 
 The dataset can also be downloaded from the EIDC
-(<https://catalogue.ceh.ac.uk/documents/9f097d82-7560-4ed2-af13-604a9110cf6d>).
-The EIDC hosted version is static and will not be updated. All updates
-will be contained within the development version on this GitHub page.
+(<https://catalogue.ceh.ac.uk/documents/9f097d82-7560-4ed2-af13-604a9110cf6d>),
+where a detailed description of this dataset is included. The EIDC
+hosted version is static and will not be updated. All updates will be
+contained within the development version on this GitHub page.
 
 ## Installation
 
@@ -31,7 +32,7 @@ You can install the development version from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("mariehenniges/BIFloraExplorer")
+devtools::install_github("RBGKew/BIFloraExplorer")
 ```
 
 ## Example

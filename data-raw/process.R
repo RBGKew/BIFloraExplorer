@@ -2,9 +2,9 @@
 
 #base list
 
-main = read.csv("data-raw/BI_MAIN.csv")
+BI_main = read.csv("data-raw/BI_MAIN.csv")
 
-checklist = dplyr::select(main, 
+checklist = dplyr::select(BI_main, 
                           kew_id, 
                           unclear_species_marker,
                           extinct_species_marker,
@@ -38,7 +38,7 @@ checklist$taxonomic_status = as.factor(checklist$taxonomic_status)
 
 
 
-main = dplyr::select(main, 
+BI_main = dplyr::select(BI_main, 
                      kew_id, 
                      unclear_species_marker,
                      extinct_species_marker,
@@ -116,13 +116,13 @@ main = dplyr::select(main,
                      
                      
                      
-main$taxonomic_status = as.factor(main$taxonomic_status)
-main$StaceIV_nativity = as.factor(main$StaceIV_nativity)
-main$Atlas_nativity_viaALIENATT_PLANTATT = as.factor(main$Atlas_nativity_viaALIENATT_PLANTATT)
-main$Stace_Crawley_nativity_aliens = as.factor(main$Stace_Crawley_nativity_aliens)
-main$life_form = as.factor(main$life_form)
-main$biome = as.factor(main$biome)
-main$growth_form = as.factor(main$growth_form)
+BI_main$taxonomic_status = as.factor(BI_main$taxonomic_status)
+BI_main$StaceIV_nativity = as.factor(BI_main$StaceIV_nativity)
+BI_main$Atlas_nativity_viaALIENATT_PLANTATT = as.factor(BI_main$Atlas_nativity_viaALIENATT_PLANTATT)
+BI_main$Stace_Crawley_nativity_aliens = as.factor(BI_main$Stace_Crawley_nativity_aliens)
+BI_main$life_form = as.factor(BI_main$life_form)
+BI_main$biome = as.factor(BI_main$biome)
+BI_main$growth_form = as.factor(BI_main$growth_form)
 
 #Chromosome numbers
 chrom_num = read.csv("data-raw/chrom_num_BI.csv")
@@ -185,15 +185,15 @@ GS_small = dplyr::slice(GS_small, which.min(GS_2C_pg))
 #add both genome size and chromosome counts into the main table (min lists, smallest measurement per species)
 #create GS_small_match and chrom_num_small_match to add into main table
 GS_small_match = dplyr::select(GS_small, kew_id, GS_1C_pg, GS_2C_pg, GS_1C_Mbp, GS_2C_Mbp,from_BI_material, data_source)
-chrom_var_match = dplyr::select(chrom_var, kew_id, sporophytic_chromosome_number, infraspecific_variation_chrom_number)
+chrom_var_match = dplyr::select(chrom_var, kew_id, sporophytic_chromosome_number, infraspecific_variation_chrom_number, other_reported_sporophytic_chromosome_number, source_of_other_chrom_num)
 
-main = dplyr::left_join(main, GS_small_match, by = "kew_id")
-main = dplyr::left_join(main, chrom_var_match, by = "kew_id")
+BI_main = dplyr::left_join(BI_main, GS_small_match, by = "kew_id")
+BI_main = dplyr::left_join(BI_main, chrom_var_match, by = "kew_id")
 
 
 
 #Add final datafiles to project
-usethis::use_data(main, overwrite = TRUE)
+usethis::use_data(BI_main, overwrite = TRUE)
 
 usethis::use_data(checklist, overwrite = TRUE)
 
