@@ -83,4 +83,4 @@
 #'   \item{\code{infraspecific_variation_chrom_number}}{character Where chromosome numbers are available, this column will indicate if diversity in chromosome counts has been observed in our dataset. For species with "y" the full range of counts is available in chrom_num_BI.csv. Information on infra-specific variation is coded as: "n" = no variation recorded, "m" = mixoploid variation, "p" = possible variation (owing to approximate counts), "s" = variation only in the presence and number of supernumerary chromosomes or fragments, "v" = variation present (euploid or aneuploid). In most cases, the "p" category is almost certainly "n" in reality.} 
 #'}
 #' @source \url{https://doi.org/10.5285/9f097d82-7560-4ed2-af13-604a9110cf6d}
-"main"
+"BI_main"

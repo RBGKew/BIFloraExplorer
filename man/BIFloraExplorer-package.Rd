@@ -11,7 +11,7 @@ A comprehensive attribute database of all vascular plant species currently extan
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/mariehenniges/BIFloraExplorer}
+  \item \url{https://github.com/RBGKew/BIFloraExplorer}
 }
 
 }

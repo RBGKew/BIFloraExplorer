@@ -22,4 +22,4 @@
 #'   \item{\code{cited_name}}{character Species binomen that was recorded when the measurement was first made. Curated to match latest StaceIV nomenclature.}
 #'}
 #' @source \url{https://doi.org/10.5285/9f097d82-7560-4ed2-af13-604a9110cf6d}
-"GS_Kew"
+"GS_Kew_BI"

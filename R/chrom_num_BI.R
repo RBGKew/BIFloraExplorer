@@ -11,4 +11,4 @@
 #'   \item{\code{number_identical_observations}}{integer Number of identical observations (where both the name the count was recorded under and the count recorded were identical)}
 #'}
 #' @source \url{https://doi.org/10.5285/9f097d82-7560-4ed2-af13-604a9110cf6d}
-"chrom_num"
+"chrom_num_BI"
