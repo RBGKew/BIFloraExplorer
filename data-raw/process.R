@@ -125,8 +125,8 @@ BI_main$biome = as.factor(BI_main$biome)
 BI_main$growth_form = as.factor(BI_main$growth_form)
 
 #Chromosome numbers
-chrom_num = read.csv("data-raw/chrom_num_BI.csv")
-chrom_num = dplyr::select(chrom_num, kew_id, taxon_name, cited_name, sporophytic_chromosome_number, notes, unambiguous_match, number_identical_observations)
+chrom_num_BI = read.csv("data-raw/chrom_num_BI.csv")
+chrom_num_BI = dplyr::select(chrom_num_BI, kew_id, taxon_name, cited_name, sporophytic_chromosome_number, notes, unambiguous_match, number_identical_observations)
 
 #Chromosome numbers and variation for main list
 chrom_var = read.csv("data-raw/chrom_var.csv")
@@ -197,7 +197,7 @@ usethis::use_data(BI_main, overwrite = TRUE)
 
 usethis::use_data(checklist, overwrite = TRUE)
 
-usethis::use_data(chrom_num, overwrite = TRUE)
+usethis::use_data(chrom_num_BI, overwrite = TRUE)
 
 usethis::use_data(GS_Kew_BI, overwrite = TRUE)
 
